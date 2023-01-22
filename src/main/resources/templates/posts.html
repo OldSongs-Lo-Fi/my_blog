@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>POSTS</title>
+</head>
+<body>
+<div th:each="item : ${list}">
+    <h1 th:text="${item.get('title')}"></h1>
+    <p th:text="${item.get('main_text')}"></p>
+    <p th:text="'Date: ' + ${item.get('create_date')}"></p>
+    <a th:href="@{/post/{id}(id=${item.id != null ? item.id : '1'})}">See More...</a>
+</div>
+
+
+<div class="footer">
+    <a href="/home">Home</a>
+    <a href="/posts">All Posts</a>
+    <a href="/registration">Registration</a>
+    <a href="/logout">Log Out</a>
+</div>
+</body>
+</html>

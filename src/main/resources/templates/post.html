@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>POST</title>
+</head>
+<body>
+
+<form>
+    <input type="button" value="Go back!" onclick="history.back()">
+</form>
+
+<h1 th:text="${post.title}"></h1>
+<p th:text="${post.main_text}"></p>
+<p th:text="'Date: ' +${post.create_date}"></p>
+
+<form action="/insertComment" method="post">
+    <input name="post_id" type="hidden" th:value="${post.id}">
+    <textarea name="text" placeholder="Enter your comment..."></textarea>
+    <button type="submit">Leave the comment!</button>
+</form>
+
+<h1>Comments: </h1>
+<div th:each="comment: ${comments}">
+    <h3 th:text="${comment.login}"></h3>
+    <p th:text="${comment.text}"></p>
+    <p th:text="'Date: ' + ${comment.create_date}"></p>
+
+</div>
+
+
+<div class="footer">
+    <a href="/home">Home</a>
+    <a href="/posts">All Posts</a>
+    <a href="/registration">Registration</a>
+    <a href="/logout">Log Out</a>
+</div>
+</body>
+</html>

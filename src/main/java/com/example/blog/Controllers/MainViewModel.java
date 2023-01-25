@@ -8,7 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import java.util.List;
 import java.util.Map;
 
@@ -44,7 +44,11 @@ public class MainViewModel {
     public String insertUsr(@RequestParam("login") String login,
                             @RequestParam("pass") String pass,
                             @RequestParam("email") String email){
-        mainModel.insertUsr(login, pass, email);
+
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(12);
+        String encodedPassword = encoder.encode(pass);
+
+        mainModel.insertUsr(login, encodedPassword, email);
         return "redirect:/logout";
     }
 

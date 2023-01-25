@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -44,8 +45,13 @@ public class MainView {
         List<Map<String, Object>> comments = mainModel.getCommentsByPost(postId);
         //TODO
         //Обработать приходящий список постов.
+        Collections.reverse(comments);
         model.addAttribute("post", usable);
         model.addAttribute("comments", comments);
         return "post";
+    }
+    @GetMapping("/admin")
+    public String admin(){
+        return "admin";
     }
 }

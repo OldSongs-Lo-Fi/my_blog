@@ -3,9 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <title>POSTS</title>
+    <link rel="stylesheet" th:href="@{/css/posts.css}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
 </head>
 <body>
+<div class="container">
+    <div class="timeline">
+        <div th:each="item : ${list}">
+            <div class="timeline-row">
+                <div class="timeline-time" th:text="${item.get('create_date')}">
+                    7:45PM<small th:text="${item.get('create_date')}">Dec 21</small>
+                </div>
+                <div class="timeline-content">
+                    <i class="icon-attachment"></i>
+                    <h4 th:text="${item.get('title')}">Admin theme!</h4>
+                    <!--TODO I need to insert here the subtitle!!! <p th:text="${item.get('main_text')}">Maxwell Admin Dashboard contains C3 graphs, flot graphs, data tables, calendar, drag &amp; drop and ion slider.</p>
+                    -->
 
+                    <div class="thumbs">
+                        <div th:if="${item.get('have_image') == true}">
+                            <img th:href="@{/post/{id}(id=${item.id != null ? item.id : '1'})}" th:src="@{'/image/' + ${item.get('id')}}" />
+                        </div>
+                    </div>
+                    <a th:href="@{/post/{id}(id=${item.id != null ? item.id : '1'})}">See More...</a>
+
+                    <div class="">
+                        <span class="badge badge-pill">Tags</span>
+                        <span class="badge badge-pill">Users</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="timeline-row">
+            <div class="timeline-content">
+                <p class="m-0">Coming soon...</p>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<!--
 <div th:each="item : ${list}">
     <div th:if="${item.get('have_image') == true}">
         <img th:src="@{'/image/' + ${item.get('id')}}" />
@@ -15,6 +58,7 @@
     <p th:text="'Date: ' + ${item.get('create_date')}"></p>
     <a th:href="@{/post/{id}(id=${item.id != null ? item.id : '1'})}">See More...</a>
 </div>
+-->
 
 <div class="footer">
     <a href="/home">Home</a>

@@ -23,6 +23,24 @@
 
 </form>
 
+<h2>Comments Moderation, my lord:</h2>
+<form action="/deleteComment" method="post">
+    <input type="number" name="comment_id" placeholder="Id of comment...">
+    <button type="submit">Delete Comment!</button>
+</form>
+
+<h2>Users Moderation, my lord:</h2>
+<form action="/deleteUsr" method="post">
+    <input type="number" name="usr_id" placeholder="Id of user...">
+    <button type="submit">DELETE USER!</button>
+</form>
+
+<h2>Posts Moderation, my lord:</h2>
+<form action="/deletePost" method="post">
+    <input type="number" name="post_id" placeholder="Id of post...">
+    <button type="submit">DELETE POST!</button>
+</form>
+
 <div class="footer">
     <a href="/home">Home</a>
     <a href="/posts">All Posts</a>

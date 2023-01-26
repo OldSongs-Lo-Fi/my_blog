@@ -3,6 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>POST</title>
+    <link rel="stylesheet" th:href="@{/css/post.css}">
+    <link rel="stylesheet" th:href="@{/css/comments.css}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
 
@@ -14,26 +19,54 @@
 <p th:text="${post.main_text}"></p>
 <p th:text="'Date: ' +${post.create_date}"></p>
 
+
+<div class="container">
+    <div class="row">
+        <div class="col-8">
+            <div class="card card-white post">
+                <div class="post-heading">
+                    <div class="float-left image">
+                        <img src="http://bootdey.com/img/Content/user_1.jpg" class="img-circle avatar" alt="user profile image">
+                    </div>
+                    <div class="float-left meta">
+                        <div class="title h5">
+                            <a href="#"><b>Ryan Haywood</b></a>
+                            made a post.
+                        </div>
+                        <h6 class="text-muted time">1 minute ago</h6>
+                    </div>
+                </div>
+                <div class="post-description">
+                    <p>Bootdey is a gallery of free snippets resources templates and utilities for bootstrap css hmtl js framework. Codes for developers and web designers</p>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+<!--
 <form action="/insertComment" method="post">
     <input name="post_id" type="hidden" th:value="${post.id}">
     <textarea name="text" placeholder="Enter your comment..."></textarea>
     <button type="submit">Leave the comment!</button>
 </form>
+https://cdn-icons-png.flaticon.com/512/3135/3135768.png
+-->
 
-<h1>Comments: </h1>
+<!--<h1>Comments: </h1>
 <div th:each="comment: ${comments}">
     <h3 th:text="${comment.login}"></h3>
     <p th:text="${comment.text}"></p>
     <p th:text="'Date: ' + ${comment.create_date}"></p>
 
-</div>
-
-
-<div class="footer">
-    <a href="/home">Home</a>
-    <a href="/posts">All Posts</a>
-    <a href="/registration">Registration</a>
-    <a href="/logout">Log Out</a>
-</div>
+</div>-->
 </body>
 </html>

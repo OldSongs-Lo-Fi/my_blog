@@ -69,7 +69,6 @@ public class MainViewModel {
 
     @PostMapping("/insertComment")
     public String insertComment(@RequestParam("post_id") int postId,
-                                ///@RequestParam("usr_id") int usrId,
                                 @RequestParam("text") String text){
         System.out.println("Was here");
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
@@ -85,5 +84,23 @@ public class MainViewModel {
         final HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.IMAGE_PNG);
         return new ResponseEntity<>(imageContent, headers, HttpStatus.OK);
+    }
+
+    @PostMapping("/deleteComment")
+    public String deleteComment(@RequestParam("comment_id") int commentId){
+        mainModel.deleteComment(commentId);
+        return "redirect:/admin";
+    }
+
+    @PostMapping("/deleteUsr")
+    public String deleteUsr(@RequestParam("usr_id") int usrId){
+        mainModel.deleteUsr(usrId);
+        return "redirect:/admin";
+    }
+
+    @PostMapping("/deletePost")
+    public String deletePost(@RequestParam("post_id") int postId){
+        mainModel.deletePost(postId);
+        return "redirect:/admin";
     }
 }

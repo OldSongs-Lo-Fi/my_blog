@@ -73,10 +73,19 @@ public class MainModel {
     }
 
 
+
+
+
+
+
+
     //DELETE///////////////////////////////////////////////////////////////
     public void deletePost(int id){
+        String delete_refs = "DELETE FROM comment WHERE post_id = " + id;
         String sql = "DELETE FROM post WHERE id = " + id;
+        int comments = jdbcTemplate.update(delete_refs);
         int users = jdbcTemplate.update(sql);
+        System.out.println(comments);
         System.out.println(users);
     }
 
@@ -87,10 +96,18 @@ public class MainModel {
     }
 
     public void deleteUsr(int id){
+        String delete_refs = "DELETE FROM comment WHERE usr_id = " +id;
         String sql = "DELETE FROM usr WHERE id = " + id;
+        int comments = jdbcTemplate.update(delete_refs);
         int users = jdbcTemplate.update(sql);
+        System.out.println(comments);
         System.out.println(users);
     }
+
+
+
+
+
 
     //GETTERS///////////////////////////////////////////////////////////////
     public List<Map<String, Object>> getTable(String table){

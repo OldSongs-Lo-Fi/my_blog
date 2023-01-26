@@ -2,13 +2,19 @@ package com.example.blog.Controllers;
 
 import com.example.blog.Components.MainModel;
 
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -35,8 +41,17 @@ public class MainViewModel {
 
     @PostMapping("/insertPost")
     public String insertPost(@RequestParam("title") String title,
-                             @RequestParam("main_text") String mainText){
-        System.out.println("Was here");
+                             @RequestParam("main_text") String mainText,
+                             @RequestParam("image") MultipartFile image) throws IOException {
+        System.out.println("#######ADDING!########");
+        if(!image.isEmpty()){
+            System.out.println("#######IMAGE IS EXIST!########");
+            System.out.println("bytes: " + Arrays.toString(image.getBytes()));
+            mainModel.insertPost(title, mainText, image.getBytes());
+            return "redirect:/home";
+        }
+        System.out.println("#######IMAGE IS NOT EXIST!########");
+
         mainModel.insertPost(title, mainText);
         return "redirect:/home";
     }
@@ -61,5 +76,14 @@ public class MainViewModel {
         int usrId = (int) mainModel.findUsr(username).get("id");
         mainModel.insertComment(postId,usrId,text);
         return "redirect:/post/" + postId;
+    }
+
+    @RequestMapping(value = "/image/{image_id}", produces = MediaType.IMAGE_PNG_VALUE)
+    public ResponseEntity<byte[]> getImage(@PathVariable("image_id") Long imageId) {
+
+        byte[] imageContent = (byte[]) mainModel.getPost(Math.toIntExact(imageId)).get(0).get("image");
+        final HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.IMAGE_PNG);
+        return new ResponseEntity<>(imageContent, headers, HttpStatus.OK);
     }
 }

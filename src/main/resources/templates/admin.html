@@ -6,5 +6,29 @@
 </head>
 <body>
 <h1>Hello, my overlord!</h1>
+
+<h1>Here yours panel, overlord! Please use this to creating a genius posts:</h1>
+<form enctype="multipart/form-data" action="/insertPost" method="post">
+
+    <label for="title_input"><input id="title_input" name="title" type="text" maxlength="40" placeholder="title..."></label>
+    <br><br>
+
+    <label for="main_text"><input id="main_text" name="main_text" type="text" maxlength="40000" placeholder="main text..."></label>
+    <br><br>
+
+    <input type="file" name="image">
+    <br><br>
+
+    <button type="submit">Add new Post</button>
+
+</form>
+
+<div class="footer">
+    <a href="/home">Home</a>
+    <a href="/posts">All Posts</a>
+    <a href="/registration">Registration</a>
+    <a href="/logout">Log Out</a>
+</div>
+
 </body>
 </html>

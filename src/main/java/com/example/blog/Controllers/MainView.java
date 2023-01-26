@@ -31,7 +31,7 @@ public class MainView {
     @GetMapping("/posts")
     public String posts(Model model){
         List<Map<String, Object>> posts =  mainModel.getTable("post");
-
+        Collections.reverse(posts);
         model.addAttribute("list", posts);
         //TODO
         return "posts";

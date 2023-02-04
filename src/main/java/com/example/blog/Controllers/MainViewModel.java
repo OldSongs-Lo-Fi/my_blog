@@ -70,9 +70,13 @@ public class MainViewModel {
     @PostMapping("/insertComment")
     public String insertComment(@RequestParam("post_id") int postId,
                                 @RequestParam("text") String text){
-        System.out.println("Was here");
+        System.out.println("##########INSERT COMMENT#############");
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        System.out.println("post_id: " + postId);
+        System.out.println("text of comment: " + text);
+        System.out.println("post_id: " + username);
         int usrId = (int) mainModel.findUsr(username).get("id");
+        System.out.println("usr_id: " + usrId);
         mainModel.insertComment(postId,usrId,text);
         return "redirect:/post/" + postId;
     }

@@ -66,7 +66,10 @@ public class MainModel {
     }
 
     public void insertComment(int post_id, int usr_id, String text){
-
+        System.out.println("############MODEL INSERTING################");
+        System.out.println("post: " + post_id);
+        System.out.println("usr: " + usr_id);
+        System.out.println("text: " + text);
         String sql = "INSERT INTO comment(post_id, usr_id, text) VALUES ('" + post_id + "', '" + usr_id + "', '" + text + "');";
         int users = jdbcTemplate.update(sql);
         System.out.println(users);

@@ -54,4 +54,9 @@ public class MainView {
     public String admin(){
         return "admin";
     }
+
+    @GetMapping("/credits")
+    public String credits(){
+        return "credits";
+    }
 }

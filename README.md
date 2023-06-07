@@ -37,6 +37,19 @@ Here is a brief overview of the API mapping in this project:
 - `POST /deleteUsr`: Deletes a user from the database based on the specified `usr_id`.
 - `POST /deletePost`: Deletes a post from the database based on the specified `post_id`.
 
+## View Mapping
+
+The controller in this project is responsible for returning HTML pages. Here is a breakdown of the different mapping methods and their purpose:
+
+- `GET /`, `GET /home`: Returns the `home.html` page.
+- `GET /registration`: Returns the `registration.html` page.
+- `GET /posts`: Returns the `posts.html` page, displaying all posts in the feed.
+- `GET /post/{id}`: Returns the `post.html` page for a specific post. It retrieves the post details and associated comments from the database and adds them to the model.
+- `GET /admin`: Returns the `admin.html` page with admin control panel.
+- `GET /credits`: Returns the `credits.html` page.
+
+These methods handle the requests for the respective pages and populate the necessary data to be rendered by the Thymeleaf template engine. The comments within the code indicate areas that may require further implementation.
+
 These are just a few examples of the mapping methods used in the project. For more details and other methods, please refer to the source code.
 
 ## Installation and Usage
